@@ -5,7 +5,8 @@ import Card from '../components/Card'
 import Input from '../components/Input'
 import NumberContainer from '../components/NumberContainer'
 
-import Colors from '../constants/colors'
+import Colors from '../constants/colors';
+import MainButton from '../components/MainButton'
 
 
 const StartGameScreen = props => {
@@ -39,12 +40,15 @@ const StartGameScreen = props => {
 
     let confirmedOutput;
     if (confirmed) {
-        confirmedOutput = 
-         <Card style={styles.summaryContainers}>
-            <Text>You Selected</Text>
-            <NumberContainer>{selectedNumber}</NumberContainer>
-            <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)}/>
-        </Card>
+        confirmedOutput =
+            <Card style={styles.summaryContainers}>
+                <Text>You Selected</Text>
+                <NumberContainer>{selectedNumber}</NumberContainer>
+                <MainButton
+                    onPress={() => props.onStartGame(selectedNumber)}>
+                    START GAME
+            </MainButton>
+            </Card>
     }
 
     return (
@@ -54,7 +58,7 @@ const StartGameScreen = props => {
             <View style={styles.screen}>
                 <Text style={styles.title}>Start a New Game</Text>
                 <Card style={styles.inputContainer}>
-                    <Text>Select a Number</Text>
+                    <Text style={styles.text}>Select a Number</Text>
                     <Input style={styles.input} blurOnSubmit autoCapitalize='none'
                         autoCorrect={false}
                         maxLength={2}
@@ -89,6 +93,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginVertical: 10,
+        fontFamily: 'open-sans-bold'
+    },
+    text: {
+        fontFamily: 'open-sans'
     },
     inputContainer: {
         width: 300,
@@ -112,7 +120,7 @@ const styles = StyleSheet.create({
     },
     summaryContainer: {
         marginTop: 20,
-        alignItems:'center'
+        alignItems: 'center'
     }
 });
 
